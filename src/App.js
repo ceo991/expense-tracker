@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseItem from './components/ExpenseItem';
@@ -10,19 +10,29 @@ function App() {
 const[expense,setExpense] = useState({
   description: "",
   price: "",
-  date: ""
+  date: "",
+  year: ""
 })
+
+
+const[years,setYears] = useState(["none"])
+const[selectedYear,setSelectedYear] = useState("none")
 const[expenses,setExpenses] = useState([])
+const[theSum,setTheSum] = useState(0)
 const[total,setTtotal] = useState(0)
-
-// const descRef = useRef()
-// const dateRef = useRef()
-// const priceRef = useRef()
-
+const[willAdd,setWillAdd] = useState(false)
 
 // useEffect(()=>{
 //   console.log(roundStringNumberWithoutTrailingZeroes(0.57,1))//use this func to calculate percentage by months 
 // })
+
+useEffect(()=>{
+  //console.log(expenses)
+  console.log(selectedYear)
+  let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === selectedYear)
+  //console.log(sumArr.map(el=>parseInt(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
+  setTheSum(sumArr.map(el=>parseInt(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
+},[selectedYear,total])
 
 let handleDescription=(e)=>{
     const {value} = e.target
@@ -47,13 +57,18 @@ let handlePrice=(e)=>{
     })
   }
 }
+
 let handleDate=(e)=>{
   const {value} = e.target
+  let tempArr = [...value.split("-")]
   if(value){
+    
     setExpense(prevExpense=>{
+      
       return{
         ...prevExpense,
-        date: value
+        date: value,
+        year: tempArr[0]
       }
     })
   }
@@ -61,15 +76,20 @@ let handleDate=(e)=>{
 
 let addExpenseItem = (e,expense)=>{
   e.preventDefault()
-  console.log(e)
   if(expense){
-    setExpenses(prevExpenses=>{return [...prevExpenses,expense]})
+    setExpenses(prevExpenses=> [...prevExpenses,expense])
     setTtotal(prevTotal => prevTotal + parseInt(expense.price))
+    let tempArr = [...expense.date.split("-")]
+    if(years.indexOf(tempArr[0]) === -1){
+      setYears(prevYears=>[...prevYears,tempArr[0]])
+    }
     setExpense({
       description: "",
       price: "",
-      date: ""
+      date: "",
+      year: ""
     })
+    toggleExpenseForm()
   }
 }
 
@@ -78,7 +98,6 @@ let removeExpenseItem = (index)=>{
     let tempArr = [...expenses]
     tempArr.splice(index,1)
     setExpenses(tempArr)
-    console.log(expenses[index])
     setTtotal(prevTotal => prevTotal - expenses[index].price)
   }
 }
@@ -135,7 +154,9 @@ let roundStringNumberWithoutTrailingZeroes = function  (num, dp) {
   return parseFloat(finalNumber.replace(/0+$/, ''))
 }
 
-const singleExpense = expenses.map((exp,index)=>{
+let theArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === selectedYear)
+
+let singleExpense = theArr.map((exp,index)=>{
   return (
       <ExpenseItem
         key={uuidv4()} 
@@ -149,17 +170,37 @@ const singleExpense = expenses.map((exp,index)=>{
   }
 )
 
+let handleYearChange=(e)=>{
+  const {value} = e.target
+  setSelectedYear(value)
+}
+
+let toggleExpenseForm=()=>{
+  setWillAdd(prevVal=>!prevVal)
+}
+
   return (
     <div id="app">
-      <ExpenseForm 
-        setDescription={handleDescription}
-        setPrice={handlePrice}
-        setDate={handleDate}
-        addExpense={addExpenseItem}
-        currentExpense={expense}
-      />
-      <Summary />
-      {expenses.length>0 && singleExpense}
+        {
+        willAdd 
+        ? 
+        <ExpenseForm 
+          setDescription={handleDescription}
+          setPrice={handlePrice}
+          setDate={handleDate}
+          addExpense={addExpenseItem}
+          currentExpense={expense}
+          cancel={toggleExpenseForm}
+        /> 
+        : 
+        <button onClick={toggleExpenseForm} >Add Expense</button> 
+        }
+
+      <Summary total={theSum} years={years} selectYear={handleYearChange} selectedYear={selectedYear}/>
+
+      {
+        expenses.length>0 && singleExpense
+      }
     </div>
   );
 }

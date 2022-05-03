@@ -1,11 +1,16 @@
 
- function ExpenseItem(props) {
+function ExpenseItem(props) {
+
+
+  //const month = new Date()
+
+
   return (
     <div>
       <div>{props.date}</div>
       <div>
         <h4>{props.description}</h4>
-        <p>{props.price}</p>
+        <p>{props.price}$</p>
       </div>
       <button onClick={()=>props.removeExpenseItem(props.index)}>X</button>
     </div>
