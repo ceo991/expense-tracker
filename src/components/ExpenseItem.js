@@ -1,10 +1,6 @@
 
 function ExpenseItem(props) {
 
-
-  //const month = new Date()
-
-
   return (
     <div>
       <div>{props.date}</div>
