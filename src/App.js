@@ -147,7 +147,7 @@ let singleExpense = theArr.map((exp,index)=>{
       <Summary total={theSum} years={years} selectYear={handleYearChange} selectedYear={selectedYear} months = {currentMonths}/>
 
       {
-        expenses.length>0 && singleExpense
+        expenses.length>0 && <div className="expenses">{singleExpense}</div>
       }
     </div>
   );
