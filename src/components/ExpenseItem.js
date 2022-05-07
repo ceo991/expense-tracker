@@ -1,12 +1,13 @@
+import './ExpenseItem.css'
 
 function ExpenseItem(props) {
 
   return (
-    <div>
+    <div className='expense-item'>
       <div>{props.date}</div>
       <div>
-        <h4>{props.description}</h4>
-        <p>{props.price}$</p>
+        <h2 className='expense-item__description'>{props.description}</h2>
+        <p  className='expense-item__price'>{props.price}$</p>
       </div>
       <button onClick={()=>props.removeExpenseItem(props.index)}>X</button>
     </div>

@@ -1,8 +1,9 @@
+import './ExpenseForm.css'
 
 export default function ExpenseForm(props) {
   return (
-    <div id="expenseForm">
-      <form onSubmit={(e) => props.addExpense(e,props.currentExpense)} style={{display: "inline"}}>
+    <div  className='new-expense__controls' id="expenseForm">
+      <form  className='new-expense__control' onSubmit={(e) => props.addExpense(e,props.currentExpense)} style={{display: "inline"}}>
           <label htmlFor="description">Description</label>
           <input type="text" name="description" id="description" value={props.currentExpense.description} onChange={props.setDescription} required/>
 
@@ -12,9 +13,10 @@ export default function ExpenseForm(props) {
           <label htmlFor="date">Date</label>
           <input type="date" name="date" id="date" value={props.currentExpense.date} onChange={props.setDate} required/>
 
-          <button type="submit">Add</button>
+          <button className='new-expense__actions' type="submit">Add</button>
+          <button  className='new-expense__actions' onClick={props.cancel}>Cancel</button>
       </form>
-      <button onClick={props.cancel}>Cancel</button>
+      
     </div>
   )
 }
