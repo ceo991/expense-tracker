@@ -20,9 +20,9 @@ let generateBars = ()=>{
       if(data.month===i){
         return data.price
       }
-    }).filter(num=>num!==undefined).map(num=>parseInt(num))
+    }).filter(num=>num!==undefined).map(num=>parseFloat(num))
     let theVal = monthPrice.length>0 ? monthPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0) : 0
-    bars.push(<MonthBar month = {new Date(1999,i-1,1).toLocaleString('en-US',{month:"short"})} key={uuidv4()} percentage={Math.round((parseInt(theVal)/props.total)*100)}/>)
+    bars.push(<MonthBar month = {new Date(1999,i-1,1).toLocaleString('en-US',{month:"short"})} key={uuidv4()} percentage={Math.round((parseFloat(theVal)/props.total)*100)}/>)
   }
   return bars
 }

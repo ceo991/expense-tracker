@@ -26,7 +26,7 @@ const[willAdd,setWillAdd] = useState(false)
 
 useEffect(()=>{
   let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
-  setTheSum(sumArr.map(el=>parseInt(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
+  setTheSum(sumArr.map(el=>parseFloat(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
 
   setCurrentMonths(sumArr.map(year=>year))
 
