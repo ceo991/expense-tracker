@@ -95,6 +95,7 @@ let addExpenseItem = (e,expense)=>{
 }
 
 let removeExpenseItem = (index)=>{
+  
   if(expenses.length>0){
     let tempArr = [...expenses]
     tempArr.splice(index,1)
@@ -116,7 +117,7 @@ let theArr = selectedYear === "none" ? expenses : expenses.filter(expense => exp
 let singleExpense = theArr.map((exp,index)=>{
   return (
       <ExpenseItem
-        key={uuidv4()} 
+        key={uuidv4()}
         date={exp.date} 
         description={exp.description} 
         price={exp.price}
