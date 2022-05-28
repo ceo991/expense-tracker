@@ -145,7 +145,7 @@ let singleExpense = theArr.map((exp,index)=>{
         <button onClick={toggleExpenseForm} >Add Expense</button> 
         }
 
-      <Summary total={theSum} years={years} selectYear={handleYearChange} selectedYear={selectedYear} months = {currentMonths}/>
+      <Summary total={theSum} years={years} selectYear={handleYearChange} selectedYear={selectedYear} months={currentMonths} expenses={theArr}/>
 
       {
         expenses.length>0 && <div className="expenses">{singleExpense}</div>
