@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseItem from './components/ExpenseItem';
-import { v4 as uuidv4 } from 'uuid';
 import Summary from './components/Summary';
 
 function App() {
@@ -117,7 +116,7 @@ let theArr = selectedYear === "none" ? expenses : expenses.filter(expense => exp
 let singleExpense = theArr.map((exp,index)=>{
   return (
       <ExpenseItem
-        key={uuidv4()}
+        key={index}
         date={exp.date} 
         description={exp.description} 
         price={exp.price}
