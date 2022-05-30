@@ -31,24 +31,16 @@ useEffect(()=>{
 
 },[selectedYear,expenses])
 
-useEffect(()=>{
-  let arr = [...theArr.map(el=>el.year)]
-
-  arr = remove_duplicates_es6(arr);
+// useEffect(()=>{
+//   let arr = [...theArr.map(el=>el.year)]
   
-  console.log(arr)
+//   // arr = arr.map(year=>years.indexOf(year) === -1 ? year : null)
+
+//   console.log(arr)
+
+//   setYears(arr.length>0 ? ["none",...arr.sort((a,b)=>a-b)] : ["none"])
   
-  setYears(theArr.length>0 ? ["none",...arr.sort((a,b)=>a-b)] : ["none"])
-  
-},[expenses])
-
-
-function remove_duplicates_es6(arr) {
-  let s = new Set(arr);
-  let it = s.values();
-  return Array.from(it);
-}
-
+// },[expenses])
 
 let handleDescription=(e)=>{
     const {value} = e.target
