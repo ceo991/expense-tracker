@@ -10,7 +10,6 @@ let generateBars = ()=>{
         return data.price
       }
     }).filter(num=>num!==undefined).map(num=>parseFloat(num))
-    console.log(monthPrice)
     let label = new Date(1999,i-1,1).toLocaleString('en-US',{month:"short"})
     let theVal = monthPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0)
 
@@ -20,7 +19,7 @@ let generateBars = ()=>{
 }
 
 const opt = props.years.map(year=>{
-  let theValue =  props.years.length>1? year : "none"
+  let theValue =  (props.years.length>1)? year : "none"
   return  <option value = {theValue} key={theValue}> {theValue} </option> 
 })
 

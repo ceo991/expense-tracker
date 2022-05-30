@@ -31,6 +31,25 @@ useEffect(()=>{
 
 },[selectedYear,expenses])
 
+useEffect(()=>{
+  let arr = [...theArr.map(el=>el.year)]
+
+  arr = remove_duplicates_es6(arr);
+  
+  console.log(arr)
+  
+  setYears(theArr.length>0 ? ["none",...arr.sort((a,b)=>a-b)] : ["none"])
+  
+},[expenses])
+
+
+function remove_duplicates_es6(arr) {
+  let s = new Set(arr);
+  let it = s.values();
+  return Array.from(it);
+}
+
+
 let handleDescription=(e)=>{
     const {value} = e.target
     if(value){
@@ -77,11 +96,11 @@ let addExpenseItem = (e,expense)=>{
   if(expense){
     setExpenses(prevExpenses=> [...prevExpenses,expense])
 
-    let tempArr = [...expense.date.split("-")]
+    // let tempArr = [...expense.date.split("-")]
   
-    if(years.indexOf(tempArr[0]) === -1){
-      setYears(prevYears=>[...prevYears,tempArr[0]])
-    }
+    // if(years.indexOf(tempArr[0]) === -1){
+    //   setYears(prevYears=>[...prevYears,tempArr[0]])
+    // }
     
     setExpense({
       description: "",
@@ -100,10 +119,6 @@ let removeExpenseItem = (index)=>{
     let tempArr = [...expenses]
     tempArr.splice(index,1)
     setExpenses(tempArr)
-    console.log("removed")
-    // let yearsArr = [...years]
-    // yearsArr.splice(index,1)
-    // setYears(yearsArr)
   }
 }
 
