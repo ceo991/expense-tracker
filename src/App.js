@@ -88,11 +88,11 @@ let addExpenseItem = (e,expense)=>{
   if(expense){
     setExpenses(prevExpenses=> [...prevExpenses,expense])
 
-    // let tempArr = [...expense.date.split("-")]
+    let tempArr = [...expense.date.split("-")]
   
-    // if(years.indexOf(tempArr[0]) === -1){
-    //   setYears(prevYears=>[...prevYears,tempArr[0]])
-    // }
+    if(years.indexOf(tempArr[0]) === -1){
+      setYears(prevYears=>[...prevYears,tempArr[0]])
+    }
     
     setExpense({
       description: "",
