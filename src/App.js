@@ -25,12 +25,11 @@ const[willAdd,setWillAdd] = useState(false)
 
 useEffect(()=>{
   let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
+  setCurrentMonths(sumArr.map(year=>year))
   setTheSum(sumArr.map(el=>parseFloat(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
 
-  setCurrentMonths(sumArr.map(year=>year))
 
 },[selectedYear,expenses])
-
 
 let handleDescription=(e)=>{
     const {value} = e.target
@@ -79,9 +78,11 @@ let addExpenseItem = (e,expense)=>{
     setExpenses(prevExpenses=> [...prevExpenses,expense])
 
     let tempArr = [...expense.date.split("-")]
+  
     if(years.indexOf(tempArr[0]) === -1){
       setYears(prevYears=>[...prevYears,tempArr[0]])
     }
+    
     setExpense({
       description: "",
       price: "",
@@ -99,6 +100,10 @@ let removeExpenseItem = (index)=>{
     let tempArr = [...expenses]
     tempArr.splice(index,1)
     setExpenses(tempArr)
+    console.log("removed")
+    // let yearsArr = [...years]
+    // yearsArr.splice(index,1)
+    // setYears(yearsArr)
   }
 }
 

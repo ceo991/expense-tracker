@@ -1,6 +1,5 @@
 import './Summary.css'
 import MonthBar from './MonthBar';
-
 function Summary(props) {
 
 let generateBars = ()=>{
@@ -11,9 +10,11 @@ let generateBars = ()=>{
         return data.price
       }
     }).filter(num=>num!==undefined).map(num=>parseFloat(num))
+    console.log(monthPrice)
     let label = new Date(1999,i-1,1).toLocaleString('en-US',{month:"short"})
-    let theVal = monthPrice.length>0 ? monthPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0) : 0
-    bars.push(<MonthBar month = {label} key={label} percentage={Math.round((parseFloat(theVal)/props.total)*100)}/>)
+    let theVal = monthPrice.reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+
+    bars.push(<MonthBar month = {label} key={label} percentage={monthPrice.length>0 ? Math.round((theVal/props.total)*100) : 0}/>)
   }
   return bars
 }
