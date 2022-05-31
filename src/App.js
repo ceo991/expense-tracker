@@ -23,8 +23,6 @@ const[selectedYear,setSelectedYear] = useState("none")
 const[expenses,setExpenses] = useState([])
 const[theSum,setTheSum] = useState(0)
 const[willAdd,setWillAdd] = useState(false)
-// const[theArr,setTheArr] = useState([])
-
 
 useEffect(()=>{
   let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
@@ -32,21 +30,25 @@ useEffect(()=>{
   
   setTheSum(sumArr.map(el=>parseFloat(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
 
-  // setTheArr(selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear)))
-
-console.log(expenses)
-
+  if(theArr.length < 1){
+    setSelectedYear(years[years.length-1])
+  }
+  
 },[selectedYear,expenses])
 
 useEffect(()=>{
   let arr = [...expenses]
   arr = arr.map(el => el.year)
-  // console.log(theArr)
-
+  arr =  remove_duplicates_es6(arr)
   setYears(expenses.length > 0 ? ["none", ...arr.sort((a,b)=>a-b)] : ["none"])
   
 },[expenses])
 
+function remove_duplicates_es6(arr) {
+  let s = new Set(arr);
+  let it = s.values();
+  return Array.from(it);
+}
 
 let handleDescription=(e)=>{
     const {value} = e.target
@@ -114,17 +116,17 @@ let addExpenseItem = (e,expense)=>{
   }
 }
 
-//change the remove logic
 let removeExpenseItem = (id)=>{
   
-  // if(expenses.length>0){
+  if(expenses.length>0){
     let tempArr = [...expenses]
     let uniqExpense = tempArr.filter(exp => exp.id === id)[0]
-    console.log(uniqExpense)
+    // console.log(uniqExpense)
     tempArr.splice(expenses.indexOf(uniqExpense), 1)
-
     setExpenses(tempArr)
-  // }
+
+
+  }
 }
 
 let handleYearChange=(e)=>{
@@ -139,7 +141,7 @@ let toggleExpenseForm=()=>{
  
  let theArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
 
-let singleExpense = theArr.map((exp)=>{
+let singleExpense = theArr.map((exp,index)=>{
   return (
       <ExpenseItem
         key={exp.id}

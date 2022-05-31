@@ -1,5 +1,7 @@
 import './Summary.css'
 import MonthBar from './MonthBar';
+import { v4 as uuidv4 } from 'uuid';
+
 function Summary(props) {
 
 let generateBars = ()=>{
@@ -20,7 +22,7 @@ let generateBars = ()=>{
 
 const opt = props.years.map(year=>{
   let theValue =  (props.years.length>1)? year : "none"
-  return  <option value = {theValue} key={theValue}> {theValue} </option> 
+  return  <option value = {theValue} key={uuidv4()}> {theValue} </option> 
 })
 
   return (
