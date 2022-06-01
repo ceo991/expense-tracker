@@ -27,13 +27,11 @@ const[willAdd,setWillAdd] = useState(false)
 useEffect(()=>{
   let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
   setCurrentMonths(sumArr.map(year=>year))
-  
   setTheSum(sumArr.map(el=>parseFloat(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
 
   if(theArr.length < 1){
     setSelectedYear(years[years.length-1])
   }
-  
 },[selectedYear,expenses])
 
 useEffect(()=>{
@@ -41,7 +39,7 @@ useEffect(()=>{
   arr = arr.map(el => el.year)
   arr =  remove_duplicates_es6(arr)
   setYears(expenses.length > 0 ? ["none", ...arr.sort((a,b)=>a-b)] : ["none"])
-  
+
 },[expenses])
 
 function remove_duplicates_es6(arr) {
@@ -121,11 +119,8 @@ let removeExpenseItem = (id)=>{
   if(expenses.length>0){
     let tempArr = [...expenses]
     let uniqExpense = tempArr.filter(exp => exp.id === id)[0]
-    // console.log(uniqExpense)
     tempArr.splice(expenses.indexOf(uniqExpense), 1)
     setExpenses(tempArr)
-
-
   }
 }
 
@@ -157,26 +152,21 @@ let singleExpense = theArr.map((exp,index)=>{
 
   return (
     <div id="app">
-        {
-        willAdd 
-        ? 
+      <div className='form-container'>
         <ExpenseForm 
           setDescription={handleDescription}
           setPrice={handlePrice}
           setDate={handleDate}
           addExpense={addExpenseItem}
           currentExpense={expense}
-          cancel={toggleExpenseForm}
+          willAdd={willAdd}
+          toggleExpenseForm={toggleExpenseForm}
         /> 
-        : 
-        <button onClick={toggleExpenseForm} >Add Expense</button> 
-        }
+      </div>
 
       <Summary total={theSum} years={years} selectYear={handleYearChange} selectedYear={selectedYear} months={currentMonths} expenses={theArr}/>
-
-      {
-        expenses.length>0 && <div className="expenses">{singleExpense}</div>
-      }
+      
+      <div className="expenses">{expenses.length>0 ? singleExpense : <h4 style={{color: "white"}}> No Entries Found</h4> }</div>
     </div>
   );
 }

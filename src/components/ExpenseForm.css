@@ -24,3 +24,21 @@
   .new-expense__actions {
     text-align: right;
   }
+
+  #expense-form{
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+    
+  }
+
+  form{
+    margin: 20px;
+  }
+
+  #add-button{
+    margin: 20px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid lightslategray;
+    
+  }

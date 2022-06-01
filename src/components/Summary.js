@@ -27,8 +27,8 @@ const opt = props.years.map(year=>{
 
   return (
     <div>
-      <div>
-        <label htmlFor='years'>Select By Year: </label>
+      <div className='filter-container'>
+        <label htmlFor='years'> Select By Year : </label>
         <select name="years" id="years" onChange={props.selectYear} value={props.selectedYear}>
           {opt}
         </select>

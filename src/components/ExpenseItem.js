@@ -7,6 +7,7 @@ function ExpenseItem(props) {
     "en-Us",
     { month: "long" }
   );
+  
   const day = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]).toLocaleString(
     "en-Us",
     { day: "2-digit" }
