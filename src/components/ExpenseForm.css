@@ -35,11 +35,12 @@ button{
 span{
   color: aliceblue;
 }
-  #expense-form{
-    border: 1px solid lightslategray;
-    border-radius: 10px;
-    width: 443px;
-  }
+#expense-form{
+  background-color: rgb(100, 98, 98);
+  border: 1px solid lightslategray;
+  border-radius: 10px;
+  width: 443px;
+}
 
   form{
     margin: 20px;

@@ -25,7 +25,7 @@ function ExpenseItem(props) {
         <h2 className="expense-item__description">{props.description}</h2>
         <p className="expense-item__price">{props.price}$</p>
       </div>
-      <button onClick={() => props.removeExpenseItem(props.id)}>X</button>
+      <button onClick={() => props.removeExpenseItem(props.id)} style={{ border:"none"}}>X</button>
     </div>
   );
 }
