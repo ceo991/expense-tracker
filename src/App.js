@@ -15,14 +15,22 @@ const[expense,setExpense] = useState({
   year: "",
   month: ""
 })
-
-
 const[years,setYears] = useState(["none"])
 const[currentMonths,setCurrentMonths] = useState([])
 const[selectedYear,setSelectedYear] = useState("none")
 const[expenses,setExpenses] = useState([])
 const[theSum,setTheSum] = useState(0)
 const[willAdd,setWillAdd] = useState(false)
+const EXPENSE_KEY="EXPENSE";
+
+useEffect(()=>{
+  const storedExpenses = JSON.parse(localStorage.getItem(EXPENSE_KEY));
+
+  if(storedExpenses.length>0){
+    setExpenses(storedExpenses)
+  }
+
+},[])
 
 useEffect(()=>{
   let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
@@ -35,10 +43,12 @@ useEffect(()=>{
 },[selectedYear,expenses])
 
 useEffect(()=>{
+  
   let arr = [...expenses]
   arr = arr.map(el => el.year)
   arr =  remove_duplicates_es6(arr)
   setYears(expenses.length > 0 ? ["none", ...arr.sort((a,b)=>a-b)] : ["none"])
+  localStorage.setItem(EXPENSE_KEY, JSON.stringify(expenses))
 
 },[expenses])
 

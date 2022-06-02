@@ -48,6 +48,10 @@ span{
     margin: 20px;
   }
 
+  #date{
+    margin-bottom: 15px;
+  }
+
   #add-button{
     margin: 20px;
     width: 100px;
