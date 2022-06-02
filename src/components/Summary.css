@@ -47,6 +47,7 @@
 }
 
 .filter-container{
+  color: aliceblue;
   background-color: rgb(100, 98, 98);
   border: 1px solid lightslategray;
   border-radius: 50px;
@@ -59,6 +60,9 @@
 label,select{
   padding: 5px;
   border-radius: 30px;
+}
+label{
+  color: aliceblue;
 }
 
 .bars-wrapper{
