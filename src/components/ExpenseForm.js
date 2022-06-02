@@ -1,7 +1,6 @@
 import './ExpenseForm.css'
 
 export default function ExpenseForm(props) {
-  { 
     return (
           props.willAdd
           ?
@@ -15,14 +14,14 @@ export default function ExpenseForm(props) {
 
               <label htmlFor="date">Date</label>
               <input type="date" name="date" id="date" value={props.currentExpense.date} onChange={props.setDate} required/>
-
-              <button className='new-expense__actions' type="submit">Add</button>
-              <button  className='new-expense__actions' onClick={props.toggleExpenseForm}>X</button>
+              <div>
+                <button className='new-expense__actions' type="submit" style={{backgroundColor: "#075e56", border:"none"}}><span>Add</span></button>
+                <button  className='new-expense__actions' onClick={props.toggleExpenseForm} style={{backgroundColor: "#de7709", border:"none"}}><span>X</span></button>
+              </div>
           </form>
         </div>
         :
-        <button onClick={props.toggleExpenseForm} id="add-button" >New Expense</button> 
+        <button onClick={props.toggleExpenseForm} id="add-button" style={{backgroundColor: "#1c8c81", border:"none", color:"aliceblue"}} >New Expense</button> 
       
     )
-  }
 }

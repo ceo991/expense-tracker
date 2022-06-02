@@ -34,8 +34,10 @@ const opt = props.years.map(year=>{
         </select>
       </div>
 
-      <div className='summary--container'>
-        {generateBars()}
+      <div className='bars-wrapper'>
+        <div className='summary--container'>
+          {generateBars()}
+        </div>
       </div>
     </div>
   )

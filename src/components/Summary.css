@@ -27,12 +27,22 @@
 
 .summary--container{
     display: flex;
-    justify-content: space-evenly;
+    gap: 44px;
+    justify-content: center;
   }
 
 .month--container>h6{
     margin: 0;
     padding: 0;
+}
+
+.month--container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 30px;
+  margin: 10px;
+  /* padding: 0; */
 }
 
 .filter-container{
@@ -46,4 +56,46 @@
 
 label,select{
   padding: 5px;
+  border-radius: 30px;
+}
+
+.bars-wrapper{
+  border:solid 1px lightslategray;
+  margin: 15px;
+  border-radius: 80px;
+}
+
+@media (max-width:1200px) {
+  .summary--container{
+    display: flex;
+    gap: 0;
+    justify-content: space-evenly;
+  }
+  .month--container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 5px;
+    margin: 0;
+  }
+  .bars-wrapper{
+    border: none;
+    border-radius: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid lightslategray;
+    border-bottom: 1px solid lightslategray;
+  }
+}
+
+@media (max-width:365px) {
+
+  .month--container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 5px;
+    margin: 0;
+  }
+
 }
