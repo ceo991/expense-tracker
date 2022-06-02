@@ -47,6 +47,7 @@
 }
 
 .filter-container{
+  box-shadow: 0 1px 8px rgb(0 0 0 / 25%);
   color: aliceblue;
   background-color: rgb(100, 98, 98);
   border: 1px solid lightslategray;
@@ -66,6 +67,7 @@ label{
 }
 
 .bars-wrapper{
+  box-shadow: 0 1px 8px rgb(0 0 0 / 25%);
   background-color: rgb(100, 98, 98);
   border:solid 1px lightslategray;
   margin: 15px;
