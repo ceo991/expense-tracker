@@ -21,8 +21,8 @@ let generateBars = ()=>{
 }
 
 const opt = props.years.map(year=>{
-  let theValue =  (props.years.length>1)? year : "none"
-  return  <option value = {theValue} key={uuidv4()}> {theValue} </option> 
+  let theValue =  (props.years.length>1) ? year : "All Years"
+  return  <option value={theValue} key={uuidv4()}> {theValue} </option> 
 })
 
   return (

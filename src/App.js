@@ -15,9 +15,9 @@ const[expense,setExpense] = useState({
   year: "",
   month: ""
 })
-const[years,setYears] = useState(["none"])
+const[years,setYears] = useState([""])
 const[currentMonths,setCurrentMonths] = useState([])
-const[selectedYear,setSelectedYear] = useState("none")
+const[selectedYear,setSelectedYear] = useState("All Years")
 const[expenses,setExpenses] = useState([])
 const[theSum,setTheSum] = useState(0)
 const[willAdd,setWillAdd] = useState(false)
@@ -33,7 +33,7 @@ useEffect(()=>{
 },[])
 
 useEffect(()=>{
-  let sumArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
+  let sumArr = selectedYear === "All Years" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
   setCurrentMonths(sumArr.map(year=>year))
   setTheSum(sumArr.map(el=>parseFloat(el.price)).reduce((previousValue, currentValue) => previousValue + currentValue, 0))
 
@@ -47,7 +47,7 @@ useEffect(()=>{
   let arr = [...expenses]
   arr = arr.map(el => el.year)
   arr =  remove_duplicates_es6(arr)
-  setYears(expenses.length > 0 ? ["none", ...arr.sort((a,b)=>a-b)] : ["none"])
+  setYears(expenses.length > 0 ? ["All Years", ...arr.sort((a,b)=>a-b)] : ["All Years"])
   localStorage.setItem(EXPENSE_KEY, JSON.stringify(expenses))
 
 },[expenses])
@@ -144,9 +144,9 @@ let toggleExpenseForm=()=>{
 }
 
  
- let theArr = selectedYear === "none" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
+ let theArr = selectedYear === "All Years" ? expenses : expenses.filter(expense => expense.year === parseInt(selectedYear))
 
-let singleExpense = theArr.map((exp,index)=>{
+let singleExpense = theArr.map((exp)=>{
   return (
       <ExpenseItem
         key={exp.id}
@@ -176,7 +176,7 @@ let singleExpense = theArr.map((exp,index)=>{
 
       <Summary total={theSum} years={years} selectYear={handleYearChange} selectedYear={selectedYear} months={currentMonths} expenses={theArr}/>
       
-      <div className="expenses">{expenses.length>0 ? singleExpense : <h4 style={{color: "white"}}> No Entries Found</h4> }</div>
+      <div className="expenses">{expenses.length> 0 ? singleExpense : <h4 style={{color: "white"}}> No Entries Found</h4>}</div>
     </div>
   );
 }
