@@ -26,7 +26,7 @@ const EXPENSE_KEY="EXPENSE";
 useEffect(()=>{
   const storedExpenses = JSON.parse(localStorage.getItem(EXPENSE_KEY));
 
-  if(storedExpenses.length>0){
+  if(storedExpenses && storedExpenses.length>0){
     setExpenses(storedExpenses)
   }
 
