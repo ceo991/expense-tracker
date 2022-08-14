@@ -104,7 +104,7 @@ let addExpenseItem = (e,expense)=>{
   e.preventDefault()
   if(expense){
 
-    setExpenses(prevExpenses=> [...prevExpenses,expense])
+    setExpenses(prevExpenses=> [expense, ...prevExpenses])
 
     let tempArr = [...expense.date.split("-")]
   
